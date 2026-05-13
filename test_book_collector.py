@@ -1,11 +1,6 @@
 import pytest
 
-from main import BooksCollector      
-
-@pytest.fixture
-def b_collector():
-#cоздаем пустой экземпляр перед каждым тестом
-    return BooksCollector()
+from main import BooksCollector  
 
 class TestBooksCollector:
 
