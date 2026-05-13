@@ -108,3 +108,27 @@ class TestBooksCollector:
 
         assert book_name not in favor_books
         assert len(favor_books) == 0
+
+    #проверяем что добавленная книга существует
+    def test_get_book_genre_existing_book(self, b_collector):
+        book_name = "Солярис"
+        book_genre = "Фантастика"
+        b_collector.add_new_book(book_name)
+        b_collector.set_book_genre(book_name, book_genre)
+        result = b_collector.get_book_genre(book_name)
+        assert result == book_genre
+
+    # проверяем метод получения словаря фильмов целиком
+    def test_get_books_genre_valid_dictionary(self, b_collector):
+        books = [
+            ("Солярис", "Фантастика"),
+            ("Звездные войны", "Фантастика"),
+            ("Такси", "Комедии"),
+            ("Оно", "Ужасы"),
+        ]
+        expected_dict = dict(books)
+        for (book_name,book_genre) in books:
+            b_collector.add_new_book(book_name)
+            b_collector.set_book_genre(book_name, book_genre)  
+        result = b_collector.get_books_genre()
+        assert result == expected_dict
